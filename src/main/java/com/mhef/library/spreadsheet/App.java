@@ -45,16 +45,13 @@ public class App {
 		String pathFileCsvOutput = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.csv";
 		String pathFileXlsOutput = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.xls";
 
-		/*
-		// Not working
 		try {
 			FileWriteConversion.convertXlsxToCsv(pathFileXlsxInput, pathFileCsvOutput);
 			System.out.println("Conversion completed successfully.");
 		} catch (IOException e) {
-			System.out.println("Error converting XLSX to CSV: " + e.getMessage());
+			System.out.println("Error converting XLSX to XLS: " + e.getMessage());
 			throw new RuntimeException(e);
 		}
-		 */
 
 		try {
 			FileWriteConversion.convertXlsxToXls(pathFileXlsxInput, pathFileXlsOutput);

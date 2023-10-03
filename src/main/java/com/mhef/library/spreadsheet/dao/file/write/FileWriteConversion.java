@@ -1,36 +1,48 @@
 package com.mhef.library.spreadsheet.dao.file.write;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class FileWriteConversion {
-	// Not working
-	public static void convertXlsxToCsv(String xlsxFilePath, String csvFilePath) throws IOException {
-		try (Workbook workbook = new XSSFWorkbook(new FileInputStream(xlsxFilePath));
-			 FileOutputStream csvWriter = new FileOutputStream(csvFilePath)) {
-			Sheet sheet = workbook.getSheetAt(0);
+	public static void convertXlsxToCsv(String pathFileXlsx, String pathFileCsv) throws IOException {
+		try (Workbook workbook = WorkbookFactory.create(new FileInputStream(pathFileXlsx));
+			 BufferedWriter csvWriter = new BufferedWriter(new FileWriter(pathFileCsv))) {
 
+			Sheet sheet = workbook.getSheetAt(0);
 			for (Row row : sheet) {
 				for (Cell cell : row) {
-					csvWriter.write(cell.getStringCellValue().getBytes());
-					if (cell.getColumnIndex() != row.getLastCellNum() - 1) {
-						csvWriter.write(',');
+					String cellValue = "";
+					switch (cell.getCellType()) {
+						case STRING:
+							cellValue = cell.getStringCellValue();
+							break;
+						case NUMERIC:
+							cellValue = String.valueOf(cell.getNumericCellValue());
+							break;
+						case BOOLEAN:
+							cellValue = String.valueOf(cell.getBooleanCellValue());
+							break;
+						case BLANK:
+							cellValue = "";
+							break;
+						default:
+							cellValue = "";
+							break;
 					}
+					csvWriter.write(cellValue + ",");
 				}
-				csvWriter.write('\n');
+				csvWriter.newLine();
 			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
-	public static void convertXlsxToXls(String xlsFilePath, String xlsxFilePath) throws IOException {
-		try (Workbook xlsWorkbook = new HSSFWorkbook(new FileInputStream(xlsFilePath));
+	public static void convertXlsxToXls(String pathFileXlsx, String pathFileXls) throws IOException {
+		try (Workbook xlsWorkbook = new HSSFWorkbook(new FileInputStream(pathFileXlsx));
 			 Workbook xlsxWorkbook = new XSSFWorkbook()) {
 
 			for (Sheet sheet : xlsWorkbook) {
@@ -60,7 +72,7 @@ public class FileWriteConversion {
 				}
 			}
 
-			try (FileOutputStream xlsxOutputStream = new FileOutputStream(xlsxFilePath)) {
+			try (FileOutputStream xlsxOutputStream = new FileOutputStream(pathFileXls)) {
 				xlsxWorkbook.write(xlsxOutputStream);
 			}
 		}
