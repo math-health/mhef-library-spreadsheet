@@ -1,4 +1,4 @@
-package com.henrik.library.data.validation;
+package com.mhef.library.spreadsheet.utils.validation;
 
 import java.util.List;
 
@@ -29,4 +29,13 @@ public class ValidationData {
 
 		return false;
 	}
+
+    public static boolean isThereArguments(String[] args) {
+        if (args.length == 0) {
+            System.out.println("Please provide the filename as an argument.");
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

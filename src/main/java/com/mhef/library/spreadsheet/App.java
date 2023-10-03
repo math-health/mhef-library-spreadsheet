@@ -1,33 +1,25 @@
-package com.henrik.library;
+package com.mhef.library.spreadsheet;
 
-import com.henrik.library.data.content.ContentDisplayTable;
-import com.henrik.library.data.file.write.FileWriteData;
-import com.henrik.library.data.file.read.FileReadMain;
+import com.mhef.library.spreadsheet.dao.content.ContentDisplayTable;
+import com.mhef.library.spreadsheet.dao.file.write.FileWriteData;
+import com.mhef.library.spreadsheet.dao.file.read.FileReadMain;
+import com.mhef.library.spreadsheet.utils.validation.ValidationData;
 
 import java.util.List;
 
 public class App {
-	private static boolean isThereArguments(String[] args) {
-		if (args.length == 0) {
-			System.out.println("Please provide the filename as an argument.");
-			return false;
-		} else {
-			return true;
-		}
-	}
-
 	public static void main(String[] args) {
 		String pathFileCsv;
 		String pathFileXlsx;
 		int[] columnsToRead = {1, 3, 5, 6};
 
 		// Check if a filename is provided as an argument
-		if (isThereArguments(args)) {
+		if (ValidationData.isThereArguments(args)) {
 			pathFileCsv = args[0];
 			pathFileXlsx = args[0];
 		} else {
-			pathFileCsv = "C:\\Users\\PC\\Workspaces\\interfusao\\library-sdms-file-data\\assets\\data\\cities.csv";
-			pathFileXlsx = "C:\\Users\\PC\\Workspaces\\interfusao\\library-sdms-file-data\\assets\\data\\example_XLS_50.xls";
+			pathFileCsv = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\cities.csv";
+			pathFileXlsx = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\example_XLS_50.xls";
 		}
 
 		// Call the functions
@@ -42,7 +34,7 @@ public class App {
 		ContentDisplayTable.tableFormattedContentPrint(listDataCsvFull);
 		System.out.println(listDataCsvFull);
 
-		String pathFileOutput = "C:\\Users\\PC\\Workspaces\\interfusao\\library-sdms-file-data\\assets\\data\\result.txt";
+		String pathFileOutput = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.txt";
 		FileWriteData.writeDataIntoFileCsv(listDataCsvFull, pathFileOutput);
 	}
 }

@@ -1,4 +1,4 @@
-package com.henrik.library;
+package com.mhef.library.spreadsheet;
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,6 +1,6 @@
-package com.henrik.library.data.content;
+package com.mhef.library.spreadsheet.dao.content;
 
-import com.henrik.library.data.validation.ValidationData;
+import com.mhef.library.spreadsheet.utils.validation.ValidationData;
 
 import java.util.List;
 
