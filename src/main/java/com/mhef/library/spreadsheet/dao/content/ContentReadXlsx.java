@@ -10,13 +10,27 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+/**
+ * @author Henrik Beck
+ * @version 1.0.0
+ */
 public class ContentReadXlsx {
 	private String fileXlsx;
 
+	/**
+	 * Constructs a new instance of the ContentReadXlsx class with the specified file path to a .xlsx file.
+	 *
+	 * @param fileXlsx The path to the .xlsx file that will be read.
+	 */
 	public ContentReadXlsx(String fileXlsx) {
 		this.fileXlsx = fileXlsx;
 	}
 
+	/**
+	 * @todo Implement the a dynamic value to format the date syntax'. By now, it is static set to be 'M/d/yy hh:ss' format
+	 * @param cell The spreadsheet current cell value.
+	 * @return The spreadsheet cell value formatted according to the cells primitive type but still returning the value as a String.
+	 */
 	private static String getCellValueAsStringAccordingToCellType(Cell cell) {
 		if (cell.getCellTypeEnum() == CellType.STRING) {
 			return cell.getStringCellValue();
@@ -33,6 +47,10 @@ public class ContentReadXlsx {
 		}
 	}
 
+	/**
+	 * @param fileXlsx The path to the .xlsx file.
+	 * @return The spreadsheet matrix data with the full data content.
+	 */
 	public List<List<String>> readData(String fileXlsx) {
 		List<List<String>> data = new ArrayList<>();
 
@@ -64,6 +82,11 @@ public class ContentReadXlsx {
 		return data;
 	}
 
+	/**
+	 * @param fileXlsx The path to the .xlsx file.
+	 * @param columnsToRead The index of the specifics columns to be read.
+	 * @return The spreadsheet matrix data, only with the specifics columns content.
+	 */
 	public List<List<String>> readData(String fileXlsx, int[] columnsToRead) {
 		List<List<String>> data = new ArrayList<>();
 

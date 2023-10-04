@@ -4,7 +4,15 @@ import com.mhef.library.spreadsheet.utils.validation.ValidationData;
 
 import java.util.List;
 
+/**
+ * @author Henrik Beck
+ * @version 1.0.0
+ */
 public class ContentDisplayTable {
+	/**
+	 * @param data The spreadsheet matrix data.
+	 * @return The column width size about the longest length of characters.
+	 */
 	private static int[] tableFormattedCalculateColumnWidths(List<List<String>> data) {
 		int[] columnWidths = new int[data.get(0).size()];
 
@@ -17,6 +25,10 @@ public class ContentDisplayTable {
 		return columnWidths;
 	}
 
+	/**
+	 * @param columnWidths The column width size about the longest length of characters.
+	 * @param row The spreadsheet matrix row list.
+	 */
 	private static void tableFormattedColumnsPrint(int[] columnWidths, List<String> row) {
 		String formattedValue;
 
@@ -35,6 +47,9 @@ public class ContentDisplayTable {
 		}
 	}
 
+	/**
+	 * @param columnWidths The column width size about the longest length of characters.
+	 */
 	private static void tableFormattedSeparatorHeaderPrint(int[] columnWidths) {
 		for (int i = 0; i < columnWidths.length; i++) {
 			System.out.print("|");
@@ -47,10 +62,16 @@ public class ContentDisplayTable {
 		}
 	}
 
+	/**
+	 * @param columnWidths The column width size about the longest length of characters.
+	 */
 	private static void tableFormattedSeparatorRowPrint(int[] columnWidths) {
 		System.out.println();
 	}
 
+	/**
+	 * @param data The spreadsheet matrix data.
+	 */
 	public static void tableFormattedContentPrint(List<List<String>> data) {
 		int[] columnWidths = tableFormattedCalculateColumnWidths(data);
 
@@ -72,6 +93,9 @@ public class ContentDisplayTable {
 		}
 	}
 
+	/**
+	 * @param data The spreadsheet matrix data.
+	 */
 	public static void tableNotFormattedContentPrint(List<List<String>> data) {
 		for (List<String> row : data) {
 			for (String value : row) {

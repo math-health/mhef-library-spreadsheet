@@ -4,7 +4,14 @@ import com.mhef.library.spreadsheet.utils.validation.ValidationFile;
 
 import java.util.List;
 
+/**
+ * @author Henrik Beck
+ * @version 1.0.0
+ */
 public class FileReadMain {
+	/**
+	 * @param pathFile The path to a spreadsheet file. In example, .csv, .xls or .xlsx files are able to be used.
+	 */
 	public static void displayTableData(String pathFile) {
 		// Check if the file exists
 		if (!ValidationFile.fileExists(pathFile)) {
@@ -23,6 +30,11 @@ public class FileReadMain {
 		}
 	}
 
+	/**
+	 * @param pathFile The path to a spreadsheet file. In example, .csv, .xls or .xlsx files are able to be used.
+	 * @param columnsToRead The index of the specifics columns to be read.
+	 * @return The spreadsheet matrix data with the full data content.
+	 */
 	public static List<List<String>> getTableData(String pathFile, int columnsToRead[]) {
 		// Check if the file exists
 		if (!ValidationFile.fileExists(pathFile)) {
