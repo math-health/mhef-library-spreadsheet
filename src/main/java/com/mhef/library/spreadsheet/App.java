@@ -5,47 +5,66 @@ import com.mhef.library.spreadsheet.dao.file.read.FileReadMain;
 import com.mhef.library.spreadsheet.dao.file.write.FileWriteConversion;
 import com.mhef.library.spreadsheet.dao.file.write.FileWriteData;
 import com.mhef.library.spreadsheet.utils.validation.ValidationData;
+import org.apache.poi.ss.usermodel.DataFormatter;
 
-import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class App {
+	final static String pathFileInputCsv = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\cities.csv";
+	final static String pathFileInputXlsx = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\example_XLS_50.xls";
+	final static String pathFileOutputCsv = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.csv";
+	final static String pathFileOutputTxt = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.txt";
+	final static String pathFileOutputXls = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.xls";
+
 	public static void main(String[] args) {
-		String pathFileCsvInput;
-		String pathFileXlsxInput;
 		int[] columnsToRead = {1, 3, 5, 6};
 
-		// Check if a filename is provided as an argument
-		if (ValidationData.isThereArguments(args)) {
-			pathFileCsvInput = args[0];
-			pathFileXlsxInput = args[0];
-		} else {
-			pathFileCsvInput = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\cities.csv";
-			pathFileXlsxInput = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\example_XLS_50.xls";
-		}
-
 		// Create the lists according to the data files
-		List<List<String>> listDataCsvFull = FileReadMain.getTableData(pathFileCsvInput, new int[]{});
-		List<List<String>> listDataCsvShort = FileReadMain.getTableData(pathFileCsvInput, columnsToRead);
-		List<List<String>> listDataXlsxFull = FileReadMain.getTableData(pathFileXlsxInput, new int[]{});
-		List<List<String>> listDataXlsxShort = FileReadMain.getTableData(pathFileXlsxInput, columnsToRead);
+		List<List<String>> listDataCsvFull = FileReadMain.getTableData(pathFileInputCsv, new int[]{});
+		List<List<String>> listDataCsvShort = FileReadMain.getTableData(pathFileInputCsv, columnsToRead);
+		List<List<String>> listDataXlsxFull = FileReadMain.getTableData(pathFileInputXlsx, new int[]{});
+		List<List<String>> listDataXlsxShort = FileReadMain.getTableData(pathFileInputXlsx, columnsToRead);
 
 		// Display the data content
-		FileReadMain.displayTableData(pathFileCsvInput);
-		FileReadMain.displayTableData(pathFileXlsxInput);
+//		dataListContentPrintAsList(listDataCsvFull);
+//		dataListContentPrintAsTable(listDataCsvFull);
 
-		ContentDisplayTable.tableFormattedContentPrint(listDataCsvFull);
-		System.out.println(listDataCsvFull);
+		// Display values from the first line
+		// Syntax: listData.get(row).get(column)
+//		System.out.println(listDataXlsxShort.get(0)); // [First Name, Gender, Age, Date]
+//		System.out.println(listDataXlsxShort.get(0).get(2)); // Cell C1 // Age
+//		System.out.println(listDataXlsxShort.get(1).get(2)); // Cell C2 // 32.0
+		System.out.println(listDataXlsxShort.get(2).get(3)); // Cell D2 // Output: 16/08/2016 || 42598.0
+//		System.out.println(listDataXlsxShort.get(2).get(3).getClass().getSimpleName());
 
-		// Write data into an external file
-		String pathFileOutput = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.txt";
-		FileWriteData.writeDataIntoFileCsv(listDataCsvFull, pathFileOutput);
+		// Display values from the first column
+		/*
+		for (int i = 0; i < listDataXlsxShort.size(); i++) {
+			System.out.println(listDataXlsxShort.get(i).get(0));
+		}
+		*/
+	}
 
-		// Convert data files
-		String pathFileCsvOutput = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.csv";
-		String pathFileXlsOutput = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.xls";
+	public static void dataListContentPrintAsList(List<List<String>> listData) {
+		System.out.println(listData);
+	}
 
-		FileWriteConversion.convertFile(pathFileXlsxInput, pathFileCsvOutput);
-		FileWriteConversion.convertFile(pathFileXlsxInput, pathFileXlsOutput);
+	public static void dataListContentPrintAsTable(List<List<String>> listData) {
+		ContentDisplayTable.tableFormattedContentPrint(listData);
+	}
+
+	public static void dataObjectContentPrintAsTable(String pathFileInput) {
+		FileReadMain.displayTableData(pathFileInput);
+	}
+
+	public static void dataFileWriteExternal(List<List<String>> listData) {
+		FileWriteData.writeDataIntoFileCsv(listData, pathFileOutputTxt);
+	}
+
+	public static void dataFileConversion() {
+		FileWriteConversion.convertFile(pathFileInputXlsx, pathFileOutputCsv);
+		FileWriteConversion.convertFile(pathFileInputXlsx, pathFileOutputXls);
 	}
 }

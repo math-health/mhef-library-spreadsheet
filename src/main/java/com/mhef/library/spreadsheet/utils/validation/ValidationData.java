@@ -1,5 +1,7 @@
 package com.mhef.library.spreadsheet.utils.validation;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ValidationData {
@@ -38,4 +40,8 @@ public class ValidationData {
             return true;
         }
     }
+
+	public static String convertFromDateToString(Date dateDouble, String syntaxFormat) {
+		return new SimpleDateFormat(syntaxFormat).format(dateDouble);
+	}
 }
