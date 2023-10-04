@@ -1,12 +1,10 @@
 package com.mhef.library.spreadsheet.dao.content;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.io.FileInputStream;
-import java.util.Iterator;
 
+import com.mhef.library.spreadsheet.utils.validation.ValidationData;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -17,6 +15,22 @@ public class ContentReadXlsx {
 
 	public ContentReadXlsx(String fileXlsx) {
 		this.fileXlsx = fileXlsx;
+	}
+
+	private static String getCellValueAsStringAccordingToCellType(Cell cell) {
+		if (cell.getCellTypeEnum() == CellType.STRING) {
+			return cell.getStringCellValue();
+		} else if (cell.getCellTypeEnum() == CellType.NUMERIC) {
+			if (DateUtil.isCellDateFormatted(cell)) {
+				return ValidationData.convertFromDateToString(cell.getDateCellValue(), "M/d/yy hh:ss");
+			} else {
+				return String.valueOf(cell.getNumericCellValue());
+			}
+		} else if (cell.getCellTypeEnum() == CellType.BOOLEAN) {
+			return String.valueOf(cell.getBooleanCellValue());
+		} else {
+			return cell.getStringCellValue();
+		}
 	}
 
 	public List<List<String>> readData(String fileXlsx) {
@@ -35,16 +49,7 @@ public class ContentReadXlsx {
 
 				while (cellIterator.hasNext()) {
 					Cell cell = cellIterator.next();
-					String cellValue = "";
-
-					if (cell.getCellTypeEnum() == CellType.STRING) {
-						cellValue = cell.getStringCellValue();
-					} else if (cell.getCellTypeEnum() == CellType.NUMERIC) {
-						cellValue = String.valueOf(cell.getNumericCellValue());
-					} else if (cell.getCellTypeEnum() == CellType.BOOLEAN) {
-						cellValue = String.valueOf(cell.getBooleanCellValue());
-					}
-
+					String cellValue = getCellValueAsStringAccordingToCellType(cell);
 					rowData.add(cellValue.trim());
 				}
 
@@ -79,16 +84,7 @@ public class ContentReadXlsx {
 					Cell cell = cellIterator.next();
 
 					if (Arrays.binarySearch(columnsToRead, columnIndex) >= 0) {
-						String cellValue = "";
-
-						if (cell.getCellTypeEnum() == CellType.STRING) {
-							cellValue = cell.getStringCellValue();
-						} else if (cell.getCellTypeEnum() == CellType.NUMERIC) {
-							cellValue = String.valueOf(cell.getNumericCellValue());
-						} else if (cell.getCellTypeEnum() == CellType.BOOLEAN) {
-							cellValue = String.valueOf(cell.getBooleanCellValue());
-						}
-
+						String cellValue = getCellValueAsStringAccordingToCellType(cell);
 						rowData.add(cellValue.trim());
 					}
 
