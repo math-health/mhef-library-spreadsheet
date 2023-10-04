@@ -9,29 +9,27 @@ import java.util.List;
 /**
  * @author Henrik Beck
  * @version 1.0.0
- *
- * @todo Overload the {@link ContentReadCsv} readData method to get the spreadsheet matrix data only from the specifics columns.
  */
 public class ContentReadCsv {
-	private String fileCsv;
+	private String filePath;
 
 	/**
 	 * Constructs a new instance of the ContentReadXlsx class with the specified file path to a .csv file.
 	 *
-	 * @param fileCsv The path to the .csv file that will be read.
+	 * @param filePath The path to the .csv file that will be read.
 	 */
-	public ContentReadCsv(String fileCsv) {
-		this.fileCsv = fileCsv;
+	public ContentReadCsv(String filePath) {
+		this.filePath = filePath;
 	}
 
 	/**
-	 * @param fileCsv The path to the .csv file.
+	 * @param filePath The path to the .csv file.
 	 * @return The spreadsheet matrix data with the full data content.
 	 */
-	public List<List<String>> readData(String fileCsv) {
+	public List<List<String>> readData(String filePath) {
 		List<List<String>> data = new ArrayList<>();
 
-		try (BufferedReader br = new BufferedReader(new FileReader(fileCsv))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 			String line;
 
 			while ((line = br.readLine()) != null) {
@@ -52,10 +50,34 @@ public class ContentReadCsv {
 	}
 
 	/**
-	 * @todo This method should be created.
-	 * @param fileCsv The path to the .csv file.
+	 * @param filePath The path to the .csv file.
 	 * @param columnsToRead The index of the specifics columns to be read.
 	 * @return The spreadsheet matrix data, only with the specifics columns content.
 	 */
-	//public List<List<String>> readData(String fileCsv, int[] columnsToRead){}
+	public List<List<String>> readData(String filePath, int[] columnsToRead) {
+		List<List<String>> data = new ArrayList<>();
+
+		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+			String line;
+
+			while ((line = br.readLine()) != null) {
+				String[] values = line.split(",");
+				List<String> row = new ArrayList<>();
+
+				for (int columnIndex : columnsToRead) {
+					if (columnIndex >= 0 && columnIndex < values.length) {
+						row.add(values[columnIndex].trim());
+					} else {
+						row.add(""); // Add empty string for non-existent columns
+					}
+				}
+
+				data.add(row);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return data;
+	}
 }

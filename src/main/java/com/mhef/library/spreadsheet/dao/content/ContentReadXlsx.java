@@ -12,15 +12,15 @@ import org.apache.poi.ss.usermodel.*;
  * @version 1.0.0
  */
 public class ContentReadXlsx {
-	private String fileXlsx;
+	private String filePath;
 
 	/**
 	 * Constructs a new instance of the ContentReadXlsx class with the specified file path to a .xlsx file.
 	 *
-	 * @param fileXlsx The path to the .xlsx file that will be read.
+	 * @param filePath The path to the .xlsx file that will be read.
 	 */
-	public ContentReadXlsx(String fileXlsx) {
-		this.fileXlsx = fileXlsx;
+	public ContentReadXlsx(String filePath) {
+		this.filePath = filePath;
 	}
 
 	/**
@@ -47,13 +47,13 @@ public class ContentReadXlsx {
 	}
 
 	/**
-	 * @param fileXlsx The path to the .xlsx file.
+	 * @param filePath The path to the .xlsx file.
 	 * @return The spreadsheet matrix data with the full data content.
 	 */
-	public List<List<String>> readData(String fileXlsx) {
+	public List<List<String>> readData(String filePath) {
 		List<List<String>> data = new ArrayList<>();
 
-		try (FileInputStream fis = new FileInputStream(fileXlsx)) {
+		try (FileInputStream fis = new FileInputStream(filePath)) {
 			Workbook workbook = WorkbookFactory.create(fis);
 			Sheet sheet = workbook.getSheetAt(0);
 
@@ -82,14 +82,14 @@ public class ContentReadXlsx {
 	}
 
 	/**
-	 * @param fileXlsx The path to the .xlsx file.
+	 * @param filePath The path to the .xlsx file.
 	 * @param columnsToRead The index of the specifics columns to be read.
 	 * @return The spreadsheet matrix data, only with the specifics columns content.
 	 */
-	public List<List<String>> readData(String fileXlsx, int[] columnsToRead) {
+	public List<List<String>> readData(String filePath, int[] columnsToRead) {
 		List<List<String>> data = new ArrayList<>();
 
-		try (FileInputStream fis = new FileInputStream(fileXlsx)) {
+		try (FileInputStream fis = new FileInputStream(filePath)) {
 			Workbook workbook = WorkbookFactory.create(fis);
 			Sheet sheet = workbook.getSheetAt(0);
 

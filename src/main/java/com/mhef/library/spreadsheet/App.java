@@ -38,22 +38,23 @@ public class App {
 
 		// Display the data content
 //		dataListContentPrintAsList(listDataCsvFull);
-//		dataListContentPrintAsTable(listDataCsvShort);
+		dataListContentPrintAsTable(listDataCsvFull);
+		dataListContentPrintAsTable(listDataCsvShort);
 //		dataListContentPrintAsList(listDataXlsFull);
 //		dataListContentPrintAsTable(listDataXlsShort);
 //		dataListContentPrintAsList(listDataXlsxFull);
 
-		dataListContentPrintAsTable(listDataXlsxFull);
-		dataListContentPrintAsList(listDataXlsxShort);
-		dataListContentPrintAsTable(listDataXlsxShort);
+//		dataListContentPrintAsTable(listDataXlsxFull);
+//		dataListContentPrintAsList(listDataXlsxShort);
+//		dataListContentPrintAsTable(listDataXlsxShort);
 
 		// Display values from the first line
 		// Syntax: listData.get(row).get(column)
-		System.out.println(listDataXlsxShort.get(0)); // [First Name, Gender, Age, Date]
-		System.out.println(listDataXlsxShort.get(0).get(2)); // Cell C1 // Age
-		System.out.println(listDataXlsxShort.get(1).get(2)); // Cell C2 // 32.0
-		System.out.println(listDataXlsxShort.get(2).get(3)); // Cell D2 // Output: 8/16/16 12:00 || 16/08/2016 || 42598.0
-		System.out.println(listDataXlsxShort.get(2).get(3).getClass().getSimpleName()); // String
+//		System.out.println(listDataXlsxShort.get(0)); // [First Name, Gender, Age, Date]
+//		System.out.println(listDataXlsxShort.get(0).get(2)); // Cell C1 // Age
+//		System.out.println(listDataXlsxShort.get(1).get(2)); // Cell C2 // 32.0
+//		System.out.println(listDataXlsxShort.get(2).get(3)); // Cell D2 // Output: 8/16/16 12:00 || 16/08/2016 || 42598.0
+//		System.out.println(listDataXlsxShort.get(2).get(3).getClass().getSimpleName()); // String
 
 		// Display values from the first column
 		/*
