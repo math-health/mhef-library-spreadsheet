@@ -2,6 +2,10 @@
 
 ## Description
 
+- Features
+	1. [x] Read existing spreadsheets.
+	1. [x] Export data to spreadsheets.
+
 - Conversion
 	1. Cascate the conversion order to avoid data loss
 		> `.xlsx` -> `.xls` -> `.csv` -> `.txt`

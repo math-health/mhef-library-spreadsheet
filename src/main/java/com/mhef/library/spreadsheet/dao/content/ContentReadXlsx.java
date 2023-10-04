@@ -6,9 +6,6 @@ import java.io.FileInputStream;
 
 import com.mhef.library.spreadsheet.utils.validation.ValidationData;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 /**
  * @author Henrik Beck
@@ -27,9 +24,11 @@ public class ContentReadXlsx {
 	}
 
 	/**
+	 * @todo Migrate this function to ValidationData class
 	 * @todo Implement the a dynamic value to format the date syntax'. By now, it is static set to be 'M/d/yy hh:ss' format
+	 * 
 	 * @param cell The spreadsheet current cell value.
-	 * @return The spreadsheet cell value formatted according to the cells primitive type but still returning the value as a String.
+	 * @return The value of the cell in the spreadsheet, considering the original primitive type parser.
 	 */
 	private static String getCellValueAsStringAccordingToCellType(Cell cell) {
 		if (cell.getCellTypeEnum() == CellType.STRING) {

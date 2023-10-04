@@ -9,6 +9,8 @@ import java.util.List;
 /**
  * @author Henrik Beck
  * @version 1.0.0
+ *
+ * @todo Overload the {@link ContentReadCsv} readData method to get the spreadsheet matrix data only from the specifics columns.
  */
 public class ContentReadCsv {
 	private String fileCsv;

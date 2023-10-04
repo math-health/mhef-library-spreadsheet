@@ -2,6 +2,7 @@ package com.mhef.library.spreadsheet.dao.file.write;
 
 import java.io.*;
 
+import com.mhef.library.spreadsheet.utils.message.MessageDisplay;
 import com.mhef.library.spreadsheet.utils.validation.ValidationFile;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -12,29 +13,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @version 1.0.0
  */
 public class FileWriteConversion {
-	/**
-	 * <p>Display an error message in case of file conversion fail.</p>
-	 *
-	 * @todo This function might be migrated to another class to be reused also by the {@link FileWriteData} class.
-	 * @param pathFileOrigin The path to the spreadsheet origin file to be based on.
-	 * @param pathFileDestiny The path to the spreadsheet result file after exporting.
-	 * @param error The IOExpection error value.
-	 */
-	private static void displayMessageError(String pathFileOrigin, String pathFileDestiny, IOException error) {
-		System.out.println("[Error]\tConversion from '" + pathFileOrigin + "' to '" + pathFileDestiny + "' file");
-		System.out.println(error.getMessage());
-	}
-
-	/**
-	 * <p>Display a success message in case of file conversion works.</p>
-	 *
-	 * @param pathFileOrigin The path to the spreadsheet origin file to be based on.
-	 * @param pathFileDestiny The path to the spreadsheet result file after exporting.
-	 */
-	private static void displayMessageSuccess(String pathFileOrigin, String pathFileDestiny) {
-		System.out.println("[Success]\tConversion from '" + pathFileOrigin + "' to '" + pathFileDestiny + "' file");
-	}
-
 	/**
 	 * @param pathFileXlsx The path to the spreadsheet origin file to be based on.
 	 * @param pathFileCsv The path to the spreadsheet result file after exporting.
@@ -129,17 +107,17 @@ public class FileWriteConversion {
 		} else if ((fileExtensionOrigin.equals(".xlsx") || fileExtensionOrigin.equals(".xls")) && fileExtensionDestiny.equals(".csv")) {
 			try {
 				FileWriteConversion.convertFromXlsxToCsv(pathFileOrigin, pathFileDestiny);
-				displayMessageSuccess(pathFileOrigin, pathFileDestiny);
+				MessageDisplay.displayMessageFileConversionSuccess(pathFileOrigin, pathFileDestiny);
 			} catch (IOException e) {
-				displayMessageError(pathFileOrigin, pathFileDestiny, e);
+				MessageDisplay.displayMessageFileConversionError(pathFileOrigin, pathFileDestiny, e);
 				throw new RuntimeException(e);
 			}
 		} else if (fileExtensionOrigin.equals(".xlsx") && fileExtensionDestiny.equals(".xls")) {
 			try {
 				FileWriteConversion.convertFromXlsxToXls(pathFileOrigin, pathFileDestiny);
-				displayMessageSuccess(pathFileOrigin, pathFileDestiny);
+				MessageDisplay.displayMessageFileConversionSuccess(pathFileOrigin, pathFileDestiny);
 			} catch (IOException e) {
-				displayMessageError(pathFileOrigin, pathFileDestiny, e);
+				MessageDisplay.displayMessageFileConversionError(pathFileOrigin, pathFileDestiny, e);
 				throw new RuntimeException(e);
 			}
 		}

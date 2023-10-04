@@ -1,5 +1,7 @@
 package com.mhef.library.spreadsheet.dao.file.write;
 
+import com.mhef.library.spreadsheet.utils.message.MessageDisplay;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -22,9 +24,9 @@ public class FileWriteData {
 				writer.newLine();
 			}
 
-			System.out.println("Data successfully written to file.");
+			MessageDisplay.displayMessageFileWriteSuccess(pathFile);
 		} catch (IOException e) {
-			System.err.println("Error writing content to file: " + e.getMessage());
+			MessageDisplay.displayMessageFileWriteError(pathFile, e);
 		}
 	}
 
