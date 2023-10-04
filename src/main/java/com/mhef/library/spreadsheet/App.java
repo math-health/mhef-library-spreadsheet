@@ -1,6 +1,7 @@
 package com.mhef.library.spreadsheet;
 
 import com.mhef.library.spreadsheet.dao.content.ContentDisplayTable;
+import com.mhef.library.spreadsheet.dao.content.ContentSearch;
 import com.mhef.library.spreadsheet.dao.file.read.FileReadMain;
 import com.mhef.library.spreadsheet.dao.file.write.FileWriteConversion;
 import com.mhef.library.spreadsheet.dao.file.write.FileWriteData;
@@ -38,8 +39,8 @@ public class App {
 
 		// Display the data content
 //		dataListContentPrintAsList(listDataCsvFull);
-		dataListContentPrintAsTable(listDataCsvFull);
-		dataListContentPrintAsTable(listDataCsvShort);
+//		dataListContentPrintAsTable(listDataCsvFull);
+//		dataListContentPrintAsTable(listDataCsvShort);
 //		dataListContentPrintAsList(listDataXlsFull);
 //		dataListContentPrintAsTable(listDataXlsShort);
 //		dataListContentPrintAsList(listDataXlsxFull);
@@ -62,6 +63,37 @@ public class App {
 			System.out.println(listDataXlsxShort.get(i).get(0));
 		}
 		*/
+
+		System.out.println(
+			ContentSearch.getValueFromIndex(listDataCsvFull, "A1") // "LatD"
+		);
+		System.out.println(
+			ContentSearch.getValueFromIndex(listDataCsvFull, "A2") // 41
+		);
+		System.out.println(
+			ContentSearch.getValueFromIndex(listDataCsvFull, "B1") // "LatM"
+		);
+		System.out.println(
+			ContentSearch.getValueFromIndex(listDataCsvFull, "B2") // 5
+		);
+		System.out.println(
+			ContentSearch.getValueFromIndex(listDataCsvFull, "H7") // "W"
+		);
+		System.out.println(
+			ContentSearch.getValueFromIndex(listDataCsvFull, "HB95") // null
+		);
+
+
+
+
+
+		System.out.println(
+			ContentSearch.getIndexFromValue(listDataCsvFull, "\"Tyler\"") // "I40"
+		);
+
+		System.out.println(
+			ContentSearch.getIndexFromValue(listDataCsvFull, "\"Twin Falls\"") // "I41"
+		);
 	}
 
 	public static void dataListContentPrintAsList(List<List<String>> listData) {
