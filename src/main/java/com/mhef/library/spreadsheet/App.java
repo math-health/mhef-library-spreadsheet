@@ -1,7 +1,6 @@
 package com.mhef.library.spreadsheet;
 
 import com.mhef.library.spreadsheet.dao.content.ContentDisplayTable;
-import com.mhef.library.spreadsheet.dao.content.ContentSearch;
 import com.mhef.library.spreadsheet.dao.file.read.FileReadMain;
 import com.mhef.library.spreadsheet.dao.file.write.FileWriteConversion;
 import com.mhef.library.spreadsheet.dao.file.write.FileWriteData;
@@ -12,13 +11,13 @@ import java.util.List;
  * @author Henrik Beck
  * @version 1.0.0
  *
- * @todo Document all the functions from the entire project using JavaDoc notation.
  * @todo Create unitary tests using JUnit5 library.
  *
  * <p>The absolute paths from the used files are referenced from my own local machine. Replace the values according to your needs</p>
  * <p>Before generating the Spreadsheet.jar file, please remove this class. This class is only used for running tests while developing before migrating to JUnit5 library format.</p>
  */
 public class App {
+	// final static String pathFileInputCsv = "C:/Users/PC/Workspaces/math-health/mhef-library-spreadsheet/assets/data/cities.csv";
 	final static String pathFileInputCsv = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\cities.csv";
 	final static String pathFileInputXls = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\example_XLS_50.xls";
 	final static String pathFileInputXlsx = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\organizing\\data\\20230529 - todos os metais (Teste Microondas) (2).xlsx";
@@ -63,37 +62,6 @@ public class App {
 			System.out.println(listDataXlsxShort.get(i).get(0));
 		}
 		*/
-
-		System.out.println(
-			ContentSearch.getValueFromIndex(listDataCsvFull, "A1") // "LatD"
-		);
-		System.out.println(
-			ContentSearch.getValueFromIndex(listDataCsvFull, "A2") // 41
-		);
-		System.out.println(
-			ContentSearch.getValueFromIndex(listDataCsvFull, "B1") // "LatM"
-		);
-		System.out.println(
-			ContentSearch.getValueFromIndex(listDataCsvFull, "B2") // 5
-		);
-		System.out.println(
-			ContentSearch.getValueFromIndex(listDataCsvFull, "H7") // "W"
-		);
-		System.out.println(
-			ContentSearch.getValueFromIndex(listDataCsvFull, "HB95") // null
-		);
-
-
-
-
-
-		System.out.println(
-			ContentSearch.getIndexFromValue(listDataCsvFull, "\"Tyler\"") // "I40"
-		);
-
-		System.out.println(
-			ContentSearch.getIndexFromValue(listDataCsvFull, "\"Twin Falls\"") // "I41"
-		);
 	}
 
 	public static void dataListContentPrintAsList(List<List<String>> listData) {
