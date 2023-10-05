@@ -1,6 +1,5 @@
 package com.mhef.library.spreadsheet;
 
-import com.mhef.library.spreadsheet.dao.content.ContentDisplay;
 import com.mhef.library.spreadsheet.dao.file.read.FileReadMain;
 import com.mhef.library.spreadsheet.dao.file.write.FileWriteConversion;
 import com.mhef.library.spreadsheet.dao.file.write.FileWriteData;
@@ -39,15 +38,9 @@ public class App {
 
 		// Display values from the first line
 		// Syntax: listData.get(row).get(column)
-//		System.out.println(listDataXlsxShort.get(0)); // [First Name, Gender, Age, Date]
-//		System.out.println(listDataXlsxShort.get(0).get(2)); // Cell C1 // Age
-//		System.out.println(listDataXlsxShort.get(1).get(2)); // Cell C2 // 32.0
-//		System.out.println(listDataXlsxShort.get(2).get(3)); // Cell D2 // Output: 8/16/16 12:00 || 16/08/2016 || 42598.0
-//		System.out.println(listDataXlsxShort.get(2).get(3).getClass().getSimpleName()); // String
-
-		// Display values from the first column
 
 		/*
+		// Display values from the first column
 		for (int i = 0; i < listDataXlsxShort.size(); i++) {
 			System.out.println(listDataXlsxShort.get(i).get(0));
 		}
@@ -55,9 +48,7 @@ public class App {
 	}
 
 	/**
-	 * @todo Migrate this method to ContentDisplayTable.
-	 * @todo Rename ContentDisplayTable to be ContentDisplay.
-	 * @todo Still availing if should I do the todo items.
+	 * @todo Still availing if I should migrate this method to ContentDisplay class.
 	 */
 	public static void dataObjectContentPrintAsTable(String pathFileInput) {
 		FileReadMain.displayTableData(pathFileInput);
@@ -67,8 +58,4 @@ public class App {
 		FileWriteData.writeDataIntoFileCsv(listData, pathFileOutputTxt);
 	}
 
-	public static void dataFileConversion() {
-		FileWriteConversion.convertFile(pathFileInputXls, pathFileOutputCsv);
-		FileWriteConversion.convertFile(pathFileInputXls, pathFileOutputXls);
-	}
 }
