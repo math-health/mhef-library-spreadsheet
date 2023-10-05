@@ -11,13 +11,14 @@ import java.util.List;
  * @author Henrik Beck
  * @version 1.0.0
  *
+ * @warning All the global variables are going to be moved to AppTest class.
  * @todo Create unitary tests using JUnit5 library.
+ * @todo Migrate all the methods belows (except the main) to their respective JUnit5 test classes.
  *
  * <p>The absolute paths from the used files are referenced from my own local machine. Replace the values according to your needs</p>
  * <p>Before generating the Spreadsheet.jar file, please remove this class. This class is only used for running tests while developing before migrating to JUnit5 library format.</p>
  */
 public class App {
-	// final static String pathFileInputCsv = "C:/Users/PC/Workspaces/math-health/mhef-library-spreadsheet/assets/data/cities.csv";
 	final static String pathFileInputCsv = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\cities.csv";
 	final static String pathFileInputXls = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\example_XLS_50.xls";
 	final static String pathFileInputXlsx = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\organizing\\data\\20230529 - todos os metais (Teste Microondas) (2).xlsx";
@@ -36,18 +37,6 @@ public class App {
 		List<List<String>> listDataXlsxFull = FileReadMain.getTableData(pathFileInputXlsx, new int[]{});
 		List<List<String>> listDataXlsxShort = FileReadMain.getTableData(pathFileInputXlsx, columnsToRead);
 
-		// Display the data content
-//		dataListContentPrintAsList(listDataCsvFull);
-//		dataListContentPrintAsTable(listDataCsvFull);
-//		dataListContentPrintAsTable(listDataCsvShort);
-//		dataListContentPrintAsList(listDataXlsFull);
-//		dataListContentPrintAsTable(listDataXlsShort);
-//		dataListContentPrintAsList(listDataXlsxFull);
-
-//		dataListContentPrintAsTable(listDataXlsxFull);
-//		dataListContentPrintAsList(listDataXlsxShort);
-//		dataListContentPrintAsTable(listDataXlsxShort);
-
 		// Display values from the first line
 		// Syntax: listData.get(row).get(column)
 //		System.out.println(listDataXlsxShort.get(0)); // [First Name, Gender, Age, Date]
@@ -57,21 +46,36 @@ public class App {
 //		System.out.println(listDataXlsxShort.get(2).get(3).getClass().getSimpleName()); // String
 
 		// Display values from the first column
+
 		/*
 		for (int i = 0; i < listDataXlsxShort.size(); i++) {
 			System.out.println(listDataXlsxShort.get(i).get(0));
 		}
 		*/
+
+		// Display the data content
+
+//		dataListContentPrintAsList(listDataCsvFull);
+//		dataListContentPrintAsList(listDataCsvShort);
+//		dataListContentPrintAsList(listDataXlsFull);
+//		dataListContentPrintAsList(listDataXlsShort);
+//		dataListContentPrintAsList(listDataXlsxFull);
+//		dataListContentPrintAsList(listDataXlsxShort);
 	}
 
+	/**
+	 * @todo Migrate this method to ContentDisplayTable
+	 * @todo Rename ContentDisplayTable to be ContentDisplay
+	 */
 	public static void dataListContentPrintAsList(List<List<String>> listData) {
 		System.out.println(listData);
 	}
 
-	public static void dataListContentPrintAsTable(List<List<String>> listData) {
-		ContentDisplayTable.tableFormattedContentPrint(listData);
-	}
-
+	/**
+	 * @todo Migrate this method to ContentDisplayTable.
+	 * @todo Rename ContentDisplayTable to be ContentDisplay.
+	 * @todo Still availing if should I do the todo items.
+	 */
 	public static void dataObjectContentPrintAsTable(String pathFileInput) {
 		FileReadMain.displayTableData(pathFileInput);
 	}
