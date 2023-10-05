@@ -1,61 +1,13 @@
 package com.mhef.library.spreadsheet;
 
-import com.mhef.library.spreadsheet.dao.file.read.FileReadMain;
-import com.mhef.library.spreadsheet.dao.file.write.FileWriteConversion;
-import com.mhef.library.spreadsheet.dao.file.write.FileWriteData;
-
-import java.util.List;
-
 /**
  * @author Henrik Beck
  * @version 1.0.0
  *
- * @warning All the global variables are going to be moved to AppTest class.
- * @todo Create unitary tests using JUnit5 library.
- * @todo Migrate all the methods belows (except the main) to their respective JUnit5 test classes.
- *
- * <p>The absolute paths from the used files are referenced from my own local machine. Replace the values according to your needs</p>
- * <p>Before generating the Spreadsheet.jar file, please remove this class. This class is only used for running tests while developing before migrating to JUnit5 library format.</p>
+ * @todo Before generating the Spreadsheet.jar file, please remove this class.
  */
 public class App {
-	final static String pathFileInputCsv = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\cities.csv";
-	final static String pathFileInputXls = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\data\\example_XLS_50.xls";
-	final static String pathFileInputXlsx = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\organizing\\data\\20230529 - todos os metais (Teste Microondas) (2).xlsx";
-	final static String pathFileOutputCsv = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.csv";
-	final static String pathFileOutputTxt = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.txt";
-	final static String pathFileOutputXls = "C:\\Users\\PC\\Workspaces\\math-health\\mhef-library-spreadsheet\\assets\\dist\\result.xls";
-
 	public static void main(String[] args) {
-		int[] columnsToRead = {1, 3, 5, 6};
-
-		// Create the lists according to the data files
-		List<List<String>> listDataCsvFull = FileReadMain.getTableData(pathFileInputCsv, new int[]{});
-		List<List<String>> listDataCsvShort = FileReadMain.getTableData(pathFileInputCsv, columnsToRead);
-		List<List<String>> listDataXlsFull = FileReadMain.getTableData(pathFileInputXls, new int[]{});
-		List<List<String>> listDataXlsShort = FileReadMain.getTableData(pathFileInputXls, columnsToRead);
-		List<List<String>> listDataXlsxFull = FileReadMain.getTableData(pathFileInputXlsx, new int[]{});
-		List<List<String>> listDataXlsxShort = FileReadMain.getTableData(pathFileInputXlsx, columnsToRead);
-
-		// Display values from the first line
-		// Syntax: listData.get(row).get(column)
-
-		/*
-		// Display values from the first column
-		for (int i = 0; i < listDataXlsxShort.size(); i++) {
-			System.out.println(listDataXlsxShort.get(i).get(0));
-		}
-		*/
+		System.out.println("Hello, world!");
 	}
-
-	/**
-	 * @todo Still availing if I should migrate this method to ContentDisplay class.
-	 */
-	public static void dataObjectContentPrintAsTable(String pathFileInput) {
-		FileReadMain.displayTableData(pathFileInput);
-	}
-
-	public static void dataFileWriteExternal(List<List<String>> listData) {
-		FileWriteData.writeDataIntoFileCsv(listData, pathFileOutputTxt);
-	}
-
 }

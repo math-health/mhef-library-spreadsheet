@@ -8,6 +8,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * @author Henrik Beck
+ * @version 1.0.0
+ */
 class ContentDisplayTest {
 	@BeforeAll
 	static void setupListLoadValues() {

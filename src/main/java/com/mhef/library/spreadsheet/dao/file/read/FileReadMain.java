@@ -33,7 +33,7 @@ public class FileReadMain {
 	/**
 	 * @param pathFile The path to a spreadsheet file. In example, .csv, .xls or .xlsx files are able to be used.
 	 * @param columnsToRead The index of the specifics columns to be read.
-	 * @return The spreadsheet matrix data with the full data content.
+	 * @return The spreadsheet matrix data with the full data content. Usage syntax: listData.get(row).get(column).
 	 */
 	public static List<List<String>> getTableData(String pathFile, int columnsToRead[]) {
 		// Check if the file exists

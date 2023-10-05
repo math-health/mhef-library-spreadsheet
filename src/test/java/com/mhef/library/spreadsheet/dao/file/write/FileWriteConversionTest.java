@@ -8,6 +8,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * @author Henrik Beck
+ * @version 1.0.0
+ */
 class FileWriteConversionTest {
 	@BeforeAll
 	static void setupListLoadValues() {
