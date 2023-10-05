@@ -1,6 +1,6 @@
 package com.mhef.library.spreadsheet.dao.file.read;
 
-import com.mhef.library.spreadsheet.dao.content.ContentDisplayTable;
+import com.mhef.library.spreadsheet.dao.content.ContentDisplay;
 import com.mhef.library.spreadsheet.dao.content.ContentReadXlsx;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class FileReadXlsx {
 		ContentReadXlsx reader = new ContentReadXlsx(pathFile);
 		List<List<String>> data = reader.readData(pathFile);
 
-		ContentDisplayTable printer = new ContentDisplayTable();
+		ContentDisplay printer = new ContentDisplay();
 
 		if (isFormatted == true) {
 			printer.tableFormattedContentPrint(data);

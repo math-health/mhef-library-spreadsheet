@@ -1,6 +1,6 @@
 package com.mhef.library.spreadsheet;
 
-import com.mhef.library.spreadsheet.dao.content.ContentDisplayTable;
+import com.mhef.library.spreadsheet.dao.content.ContentDisplay;
 import com.mhef.library.spreadsheet.dao.file.read.FileReadMain;
 import com.mhef.library.spreadsheet.dao.file.write.FileWriteConversion;
 import com.mhef.library.spreadsheet.dao.file.write.FileWriteData;
@@ -52,23 +52,6 @@ public class App {
 			System.out.println(listDataXlsxShort.get(i).get(0));
 		}
 		*/
-
-		// Display the data content
-
-//		dataListContentPrintAsList(listDataCsvFull);
-//		dataListContentPrintAsList(listDataCsvShort);
-//		dataListContentPrintAsList(listDataXlsFull);
-//		dataListContentPrintAsList(listDataXlsShort);
-//		dataListContentPrintAsList(listDataXlsxFull);
-//		dataListContentPrintAsList(listDataXlsxShort);
-	}
-
-	/**
-	 * @todo Migrate this method to ContentDisplayTable
-	 * @todo Rename ContentDisplayTable to be ContentDisplay
-	 */
-	public static void dataListContentPrintAsList(List<List<String>> listData) {
-		System.out.println(listData);
 	}
 
 	/**

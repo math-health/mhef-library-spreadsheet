@@ -8,7 +8,16 @@ import java.util.List;
  * @author Henrik Beck
  * @version 1.0.0
  */
-public class ContentDisplayTable {
+public class ContentDisplay {
+	/**
+	 * <p>Display the entire spreadsheet content as an array.</p>
+	 *
+	 * @param data The spreadsheet matrix data.
+	 */
+	public static void listAsArray(List<List<String>> data) {
+		System.out.println(data);
+	}
+
 	/**
 	 * @param data The spreadsheet matrix data.
 	 * @return The column width size about the longest length of characters.
@@ -53,7 +62,7 @@ public class ContentDisplayTable {
 	private static void tableFormattedSeparatorHeaderPrint(int[] columnWidths) {
 		for (int i = 0; i < columnWidths.length; i++) {
 			System.out.print("|");
-			System.out.print("-".repeat(columnWidths[i] + 0) + " ");
+			System.out.print("-".repeat(columnWidths[i]) + " ");
 			System.out.print("\t");
 
 			if (i == columnWidths.length - 1) {
